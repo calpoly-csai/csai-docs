@@ -15,7 +15,7 @@ Lets get you up and running! If you haven't already, [install node](https://node
 1. Clone the repo:
 
 ```
-git clone [repo]
+git clone https://github.com/calpoly-csai/csai-docs.git
 ```
 
 2. Navigate to project:
