@@ -3,8 +3,9 @@ name: Nimbus
 route: /projects/nimbus/overview
 menu: Projects
 ---
-import {Flex} from "theme-ui"
+
 import libraryLinks from "@/resources/library-links";
+import InlineFlex from "@/components/InlineFlex";
 import LibraryPill from "@/components/LibraryPill";
 import flaskIcon from "public/icons/flask.png";
 import sqlAlchemyIcon from "public/icons/sqlAlchemy.png";
@@ -35,11 +36,19 @@ The Nimbus ecosystem consists of several different sub projects working together
 
 ## Nimbus API
 
-<div style={{display: "flex", margin: "20px 0"}}>
-<LibraryPill name="Flask" invertOnDark={true} icon={flaskIcon} link={libraryLinks.python.FLASK} />
-<LibraryPill name="SQL Alchemy" icon={sqlAlchemyIcon} link={libraryLinks.python.SQLALCHEMY} />
-</div>
-
+<InlineFlex>
+  <LibraryPill
+    name="Flask"
+    invertOnDark={true}
+    icon={flaskIcon}
+    link={libraryLinks.python.FLASK}
+  />
+  <LibraryPill
+    name="SQL Alchemy"
+    icon={sqlAlchemyIcon}
+    link={libraryLinks.python.SQLALCHEMY}
+  />
+</InlineFlex>
 
 The API routes data and requests to the correct locations. Our apps communicate with this modue via HTTP REST API requests, which call functions in Python that perform a specific action. For Nimbus users, the API routes questions to the NLP model for parsing. Club members use other endpoints to store and validate data. API functions uses a SQLAlchemy ORM to interact with the MySQL database. The ORM maps SQL rows in a table to Python classes, allowing developers to modify the database without writing SQL queries. After the requested action is performed, the API sends back a response. This can be a bundle of requested data, a confirmation of a sucessful action, or an error if something went wrong.
 
@@ -47,33 +56,43 @@ The API routes data and requests to the correct locations. Our apps communicate 
 
 ## Nimbus NLP Model
 
-<Flex>
-<LibraryPill name="Scikit Learn" icon={sklearnIcon} link={libraryLinks.python.SKLEARN} />
-<LibraryPill name="Tensorflow" icon={tensorflowIcon} link={libraryLinks.python.TENSORFLOW} />
-</Flex>
+<InlineFlex>
+  <LibraryPill
+    name="Scikit Learn"
+    icon={sklearnIcon}
+    link={libraryLinks.python.SKLEARN}
+  />
+  <LibraryPill
+    name="Tensorflow"
+    icon={tensorflowIcon}
+    link={libraryLinks.python.TENSORFLOW}
+  />
+</InlineFlex>
 
-The K Nearest Neighbors Natural Language Processing model allows us to map questions to the closest known answer in our knowledge base. The model recieves the question as a string from the Nimbus API. It converts the phrase into blocks called tokens, which are words grouped around semantic meaning. These tokens are encoded into numbers, which are used to represent a point in n-dimensional space. By finding the closest point to our question through cosine similarity, we can link the user's question to a known question. By looking up this known question in the database, we can find the corresponding answer. 
+The K Nearest Neighbors Natural Language Processing model allows us to map questions to the closest known answer in our knowledge base. The model recieves the question as a string from the Nimbus API. It converts the phrase into blocks called tokens, which are words grouped around semantic meaning. These tokens are encoded into numbers, which are used to represent a point in n-dimensional space. By finding the closest point to our question through cosine similarity, we can link the user's question to a known question. By looking up this known question in the database, we can find the corresponding answer.
 
-## MySql Database 
-The database is mostly a simple storage utility which keeps track of our question/answer knowledge base, user feedback and scraped data. Database developers are provided with individual logins in order to keep the database secure. 
+## MySql Database
+
+The database is mostly a simple storage utility which keeps track of our question/answer knowledge base, user feedback and scraped data. Database developers are provided with individual logins in order to keep the database secure.
 
 ## Nimbus Chat
 
-Nimbus Chat is a chatbot built in Vue that allows students to query our model through the browser. 
+Nimbus Chat is a chatbot built in Vue that allows students to query our model through the browser.
 
 ## Nimbus Voice Assistant
 
 The Nimbus Voice Assistant is a voice user interface written in python running on a Raspberry Pi with a custom hardware chasis. It allows users to interact with Nimbus by saying "Nimbus" followed by a question. The device uses Google's speech-to-text engine to convert the audio and then sends the strigified question to the Nimbus API for processing. When it recieves an answer from the Nimbus API, it uses a text-to-speech engine to read the answer aloud to the user.
 
 ## Web Scrapers
-Our web scrapers are responsivle for keeping the Nimbus knowledge base up to date. The system watches a variety of Cal Poly informational websites and extracts useful data for the NLP model to reference. 
+
+Our web scrapers are responsivle for keeping the Nimbus knowledge base up to date. The system watches a variety of Cal Poly informational websites and extracts useful data for the NLP model to reference.
 
 **TODO** a table of what we track
 
 ## CSAI Recorder
+
 The CSAI club needs to collect a bunch of data to develop our machine learning models. CSAI Recorder is a web app that allows us to crowd source data collection. It provides a guided experience that helps people enter and label their own data. Users can contribute wake word samples which are used to help Nimbus recognize its own name. They can also add to our knowledge base by requesting questions and providing answers. The CSAI Recorder sends the collected data to the Nimbus API to be routed to the database.
 
 ## Nimbus Validator
+
 Crowd sourced data has to be validated before it can be used. The Nimbus Validator is a React web app that allows club members to easily access and clean unvalidated data. It enforces best practices and helps correct common errors. After validation, information is automatically integrated into the active Nimbus knowledge base.
-
-

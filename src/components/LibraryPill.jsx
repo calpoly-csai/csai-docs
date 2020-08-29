@@ -9,10 +9,6 @@ export default function LibraryPill(props) {
   const pillStyle = css`
     position: relative;
     padding: 8px 20px;
-    padding-right: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     border: none;
     font-family: inherit;
     font-size: inherit;
@@ -20,10 +16,12 @@ export default function LibraryPill(props) {
     cursor: pointer;
     border-radius: 7px;
     height: 70px;
-    margin-right: 20px;
+    margin: 10px;
+    box-sizing: border-box;
   `;
 
   const iconStyle = css`
+    display: inline-block;
     object-fit: contain;
     object-position: center;
     height: 100%;
@@ -34,6 +32,7 @@ export default function LibraryPill(props) {
   `;
 
   const labelStyle = css`
+    display: inline-block;
     margin-left: 20px;
     font-weight: 600;
   `;
@@ -48,7 +47,6 @@ export default function LibraryPill(props) {
       onClick={navigateToLibrary}
     >
       <img src={props.icon} alt={`${props.name} icon`} sx={iconStyle} />
-      <p css={labelStyle}>{props.name}</p>
     </button>
   );
 }
