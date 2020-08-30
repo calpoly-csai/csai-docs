@@ -1,5 +1,7 @@
 # CSAI Docs
 
+**[Check out the live site](https://kind-lichterman-90f7d9.netlify.app)**
+
 ## Intention
 
 The one stop shop for CSAI documentation and onboarding. We want to make information accessible throughout the club and provide members with the tools to ramp up quickly and get to work on the team of their choosing.
@@ -51,4 +53,20 @@ lorem ipsum :)
 
 ```
 
-For more info on document formatting, see the [Docz docs](https://www.docz.site/docs/getting-started#develop).
+### Useful Resources
+
+This page is built on a powerful stack of React-based packages that you can leverage in you documentation:
+
+- For more info on document formatting and site structure, see the [Docz docs](https://www.docz.site/docs/getting-started#develop).
+- For design system and theme information, see [Theme UI](https://theme-ui.com/getting-started)
+- For CSS-In-JS styling, use [Emotion](https://emotion.sh/docs/introduction)
+- Wanna dive into the deep end and tweak some static site config, check out [Gatsby](https://www.gatsbyjs.com/)
+
+You can import these packages directly into your page or component to expose some desired functionality:
+
+```
+/** @jsx jsx */ // Comment used to enable Theme UI sx styling
+import { useState, useEffect, useRef, useCallback } from "react"; // Some boilerplate react functionality
+import { css, keyframes } from "@emotion/core"; // Pull in emotion for some styling
+import { jsx } from "theme-ui"; // Theme UI for some theming :P
+```
