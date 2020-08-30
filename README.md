@@ -70,3 +70,26 @@ import { useState, useEffect, useRef, useCallback } from "react"; // Some boiler
 import { css, keyframes } from "@emotion/core"; // Pull in emotion for some styling
 import { jsx } from "theme-ui"; // Theme UI for some theming :P
 ```
+
+### Tips and Tricks
+
+#### File Aliases
+
+Accessing components or resources from a page with a relative path is a pain, so I added a couple aliases to make the job easier:
+
+| alias  | definition        | example                                                  |
+| ------ | ----------------- | -------------------------------------------------------- |
+| @      | /src directory    | import Project from "@/components/Project"               |
+| public | /public directory | import tensorflowIcon from "public/icons/tensorflow.png" |
+
+### FAQ
+
+**_After adding/deleting a file, the build broke:_**
+
+1. Try restarting the `npm run dev` process.
+2. Could be a caching problem.
+
+**_My code edits aren't showing up on the localhost dev server:_**
+
+1. Try restarting the `npm run dev` process.
+2. Browsers will often cache pages to avoid unnecessary fetches. To bust the cache, you can reload the page, open the page in a new window or restart your entire browser.
