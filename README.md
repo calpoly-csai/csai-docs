@@ -87,7 +87,7 @@ Accessing components or resources from a page with a relative path is a pain, so
 **_After adding/deleting a file, the build broke:_**
 
 1. Try restarting the `npm run dev` process.
-2. Could be a caching problem.
+2. Could be a caching problem. Delete the `/.docz/.cache` folder and restart dev server.
 
 **_My code edits aren't showing up on the localhost dev server:_**
 
