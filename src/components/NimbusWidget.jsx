@@ -27,6 +27,10 @@ const spinnerAnimation = keyframes`
 `;
 
 const ChatField = ({ onChange, value, onShuffle, onSend }) => {
+  const fieldRef = useRef(null);
+  useEffect(() => {
+    fieldRef.current && (fieldRef.current.innerText = value);
+  }, [value]);
   return (
     <div
       className="ChatField"
@@ -36,12 +40,16 @@ const ChatField = ({ onChange, value, onShuffle, onSend }) => {
         alignItems: "center",
       }}
     >
-      <RefreshCw onClick={onShuffle} style={{ cursor: "pointer" }} />
-      <input
+      <RefreshCw
+        onClick={() => fieldRef.current && onShuffle(fieldRef.current)}
+        style={{ cursor: "pointer" }}
+      />
+      <div
         type="text"
-        placeholder="Ask Nimbus..."
         value={value}
         onChange={onChange}
+        ref={fieldRef}
+        contentEditable="true"
         sx={{
           padding: "10px",
           margin: "0 10px",
@@ -53,7 +61,7 @@ const ChatField = ({ onChange, value, onShuffle, onSend }) => {
           color: "inherit",
           width: "200px",
         }}
-      />
+      ></div>
       <Send onClick={onSend} color={"blue"} style={{ cursor: "pointer" }} />
     </div>
   );
@@ -68,22 +76,6 @@ const Loader = (props) => (
     sx={{ border: "3px solid primary", borderTopColor: "transparent" }}
   ></div>
 );
-
-const Bubble = ({ children }) => {
-  return (
-    <div
-      css={css`
-        color: white;
-        padding: 5px 15px;
-        border-radius: 20px;
-        margin: 20px 0;
-      `}
-      sx={{ bg: "primary" }}
-    >
-      {children}
-    </div>
-  );
-};
 
 export default function NimbusWidget(props) {
   let [answer, setAnswer] = useState("");
@@ -111,11 +103,13 @@ export default function NimbusWidget(props) {
     askQuestion();
   }, [question]);
 
-  const getRandomQuestion = () => {
-    const randomIndex = Math.round(
-      Math.random() * (curatedQuestions.length - 1)
-    );
-    setFieldValue(curatedQuestions[randomIndex]);
+  const setRandomQuestion = (el) => {
+    let chosenQuestion, randomIndex;
+    do {
+      randomIndex = Math.round(Math.random() * (curatedQuestions.length - 1));
+      chosenQuestion = curatedQuestions[randomIndex];
+    } while (curatedQuestions[randomIndex] === fieldValue);
+    setFieldValue((el.innerText = chosenQuestion));
   };
 
   const updateField = (e) => {
@@ -140,10 +134,26 @@ export default function NimbusWidget(props) {
         margin: "auto",
       }}
     >
-      {isLoading ? <Loader /> : <Bubble>{answer}</Bubble>}
+      <div
+        className="response-box"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "300px",
+          border: "2px solid",
+          borderColor: "border",
+          padding: "15px",
+          borderRadius: "7px",
+          margin: "10px",
+        }}
+      >
+        {isLoading ? "Loading..." : answer}
+      </div>
 
       <ChatField
-        onShuffle={getRandomQuestion}
+        onShuffle={setRandomQuestion}
         onSend={() => setQuestion(fieldValue)}
         onChange={updateField}
         value={fieldValue}
