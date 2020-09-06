@@ -8,7 +8,7 @@ import Contact from "@/components/Contact";
 
 # Software
 
-The software team is responsible for keeping the entire tech stack working. They advise other teams on how to best integrate their software with the project as a whole.
+The software team is responsible for working on the APIs/backend logic and keeping the entire tech stack working. They advise other teams on how to best integrate their software with the project as a whole. 
 
 ## Contributions
 
@@ -19,6 +19,87 @@ The software team is responsible for keeping the entire tech stack working. They
 ## Stack
 
 - Python
+- Flask
+
+## Team Coding Standards
+
+- Stick to pep8 styling (run `pycodestyle filename`)
+- Always write unit tests for new logic, if possible
+- Print stacktrace for thrown exceptions, we need all the info we can get for debugging
+
+## Getting Started
+
+To work on the API code, you'll need to set up a local repository.
+
+1. Clone the git repo
+```
+https://github.com/calpoly-csai/api.git
+```
+
+2. Navigate to the repository 
+```
+cd api
+```
+
+3. Follow relevant setup steps from README here: https://github.com/calpoly-csai/api
+
+TODO: flesh out these steps more
+
+4. You should now be ready to make changes!
+
+## Writing Unit Tests
+
+### General Guidelines
+
+- Try to keep unittests small and focused, they shouldn't be testing more the functionality of more than one method.
+- Use `assert` to verify any relevant conditions.
+- Make sure that unittests do not interact or depend on each other.
+
+### Mocking
+
+For the most part, unit tests involving API logic will require you to make use of the `mock` library to avoid issues with the database client.
+We don't want to be making actual calls to the database when we're testing our logic, after all.	
+
+- What is mocking?
+  - "Mocking" is creating a special, dummy instance of an object or class that you, the developer, have complete control over. 
+    This allows developers to set the specific return values of methods,  create "side effects" that happen when certain methods are called, etc.
+
+- Why would I mock?
+  - Avoid external API/downstream dependency calls (ex: you wouldn't want to make database calls in your unit test).
+  - You can make your tests less complicated and faster to run if you mock out big functions that don't necessarily matter 
+    (say, you just care about the return value).
+  - Create more powerful and "complete" tests (ex: if you have some mocked client variable, you can assert that one of its methods was called).
+
+- How do I mock? 
+  - The `mock` docs have a comprehensive guide here: https://docs.python.org/3/library/unittest.mock.html.
+  - The simplest and suggested way to use `mock` in unittests is to use the @patch decorator on a unittest function - you can see our current unittests
+    for examples (note that the *top* item in the patch is linked to the *last* parameter of the unittest function).
+  - Otherwise, you can instantiate a mock with `Mock()` and set its properties manually.
+
+
+## Running Unit Tests
+
+Run the `run_tests.sh` script in the `tests` folder to run the tests.
+```
+sh run_tests.sh
+```
+
+You can also run the tests manually with this command:
+
+```
+python -m pytest
+```
+
+Or if you have multiple versions of python installed:
+```
+python3 -m pytest
+```
+
+To get code coverage with the `coverage` package, run these commands:
+```
+coverage run -m pytest
+coverage report
+```
 
 ## Leads
 
