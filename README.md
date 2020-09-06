@@ -82,6 +82,12 @@ Accessing components or resources from a page with a relative path is a pain, so
 | @      | /src directory    | import Project from "@/components/Project"               |
 | public | /public directory | import tensorflowIcon from "public/icons/tensorflow.png" |
 
+#### Style Guide
+
+When writing a new doc, It's good practice to mirror the structure of pages in the same category. Take a look at adjacent pages before adding your content. Both the Teams and Projects category have a defined header style which should be maintained for future entries.
+
+New components should follow the defined UI theme of the site. Our theme is easily accessible through the `<StyleGuide/>` component. Adding this to any document will display the colors, fonts and type sizes that can be programmatically referenced using the [`sx` prop](https://theme-ui.com/sx-prop/). Just make sure that you remove the style guide before committing :).
+
 ### FAQ
 
 **_After adding/deleting a file, the build broke:_**
