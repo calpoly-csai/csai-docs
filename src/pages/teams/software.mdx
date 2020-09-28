@@ -26,6 +26,7 @@ The software team is responsible for working on the APIs/backend logic and keepi
 - Stick to pep8 styling (run `pycodestyle filename`)
 - Always write unit tests for new logic, if possible
 - Print stacktrace for thrown exceptions, we need all the info we can get for debugging
+- If you are ignoring an exception, include a comment on why
 
 ## Getting Started
 
@@ -58,7 +59,7 @@ TODO: flesh out these steps more
 ### Mocking
 
 For the most part, unit tests involving API logic will require you to make use of the `mock` library to avoid issues with the database client.
-We don't want to be making actual calls to the database when we're testing our logic, after all.	
+We don't want to be making actual calls to the database when we're testing our logic, after all.
 
 - What is mocking?
   - "Mocking" is creating a special, dummy instance of an object or class that you, the developer, have complete control over. 
