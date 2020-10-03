@@ -32,13 +32,13 @@ cd csai-docs
 npm install
 ```
 
-4. Start the dev server:
+4. Start the dev server (you will likely need version 14+ of Node.js):
 
 ```
 npm run dev
 ```
 
-5. Look in the readout from the previous command and find the `localhost` link. Copy and paste it into your favorite browser.
+5. Look in the readout from the previous command and find the `localhost` link (it may not be at the end of the output, scroll up if you can't find it). Copy and paste it into your favorite browser.
 
 From here, you can make changes to the project files in a code editor and see the updates render live! Writing pages is as easy as creating a `.mdx` file and defining the associated title and route in the document header:
 
