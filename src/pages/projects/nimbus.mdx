@@ -94,7 +94,24 @@ The Nimbus Voice Assistant is a voice user interface written in python running o
 
 Our web scrapers are responsivle for keeping the Nimbus knowledge base up to date. The system watches a variety of Cal Poly informational websites and extracts useful data for the NLP model to reference.
 
-**TODO** a table of what we track
+<table>
+  <tr>
+    <td>Course</td>
+    <td>Units, pre/corequisites, terms offered, GE areas, description.</td>
+  </tr>
+  <tr>
+    <td>Professors</td>
+    <td>Courses taught, email phone number, title, department, office, office hours, research interests.</td>
+  </tr>
+  <tr>
+    <td>Clubs</td>
+    <td>Type, description, contact person/email/phone, advisor, affiliation.</td>
+  </tr>
+  <tr>
+    <td>Sections</td>
+    <td>Start/end times, locations, instructor, type, days, department.</td>
+  </tr>
+</table>
 
 ## CSAI Recorder
 
@@ -103,3 +120,40 @@ The CSAI club needs to collect a bunch of data to develop our machine learning m
 ## Nimbus Validator
 
 Crowd sourced data has to be validated before it can be used. The Nimbus Validator is a React web app that allows club members to easily access and clean unvalidated data. It enforces best practices and helps correct common errors. After validation, information is automatically integrated into the active Nimbus knowledge base.
+
+## QA Objects
+
+The behavior necessary to answer a question is stored in that question's QA object, which contains functions for retrieving necessary data from the database, formatting the data, and outputting an answer.
+Creating QA objects can be time-consuming, so a simple meta-language was created to turn plain-text question and answer formats stored in a Google Sheet into QA objects. Simple questions can be easily added by adding a new row in the sheet, and QA objects for more complex questions can still be manually created and used.
+
+Formats are simple sentences with some special tokens.
+
+Special tokens are in square brackets [] and have key words separated by two periods
+
+`ENTITY` can be `PROF`, `COURSE`, or `CLUB`.
+
+`[ENTITY]` will be substituted with the name of the extracted entity.
+
+`[PROF] -> "Khosmood"`
+
+`[ENTITY..PROPERTY]` will be substituted with the property of that entity from its main table in the database
+
+`[PROF..email] -> foaad@calpoly.edu`
+
+`[ENTITY..PROPERTY..TABLE]` will search for that entity in a different table. Currently, this isn't super useful, but `TABLE` can be any `ENTITY` or `PROF_SECTION` to search in the sections table.
+
+`[ENTITY..PROPERTY..JOINER]` will find all matches to `ENTITY` in its default table, make a list of the matching `PROPERTY`, and grammatically join them with `JOINER`.
+
+`JOINER` will pretty much always be "and" or "or", and when I say "grammatically join" I mean join like:
+
+`["CPE 202"] -> "CPE 202"`
+`["CPE 202", "CPE 203"] -> "CPE 202 and CPE 203"`
+`["CPE 202", "CPE 203", "CPE 357"] -> "CPE 202, CPE 203, and CPE 357"`
+
+`TABLE` can be any of the `ENTITY` types, as well as `PROF_SECTION` for section information.
+
+Finally, `[ENTITY..PROPERTY..TABLE..JOINER]` will find all matches to `ENTITY` in `TABLE`, make of list of the matching `PROPERTY`, and grammatically join them with `JOINER`.
+
+This lets us answer questions about sections like, "What sections does [PROF] teach?"
+
+`[PROF..section_name..PROF_SECTION..and] -> "CSC 491_15, CSC 492_15, CSC 482_01, CSC 378_04, CSC 378_03, CSC 482_02, CSC 400_15, CPE 461_30, and CSC 498_15"`
