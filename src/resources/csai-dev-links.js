@@ -7,5 +7,6 @@ export default {
     NIMBUS_CHAT: "https://github.com/calpoly-csai/nimbus-chat",
     NIMBUS_RECORDER: "https://github.com/calpoly-csai/csai-recorder",
     NIMBUS_API: "https://github.com/calpoly-csai/api",
+    NIMBUS_VALIDATOR: "https://github.com/calpoly-csai/nimbus-validator-app",
   },
 };
