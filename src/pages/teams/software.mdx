@@ -20,13 +20,21 @@ The software team is responsible for working on the APIs/backend logic and keepi
 
 - Python
 - Flask
+- Java (Android App)
 
 ## Team Coding Standards
 
-- Stick to pep8 styling (run `pycodestyle filename`)
 - Always write unit tests for new logic, if possible
 - Print stacktrace for thrown exceptions, we need all the info we can get for debugging
 - If you are ignoring an exception, include a comment on why
+
+### Python specific
+- Stick to pep8 styling for Python code (run `pycodestyle filename`)
+
+### Java specific
+- Use google-java-format for Java code (see: https://github.com/google/google-java-format)
+- Use `final` modifier on variables wherever possible, to help catch bugs with unwanted mutations
+- Use `Optional` when dealing with nulls to make handling them easier
 
 ## Getting Started
 
