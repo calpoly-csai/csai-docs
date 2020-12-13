@@ -4,6 +4,9 @@ route: /projects/swanton-ranch-chatbot
 menu: Projects
 ---
 
+import Project from "@/components/Project";
+import InlineFlex from "@/components/InlineFlex";
+
 # Swanton Ranch Chatbot
 
 Swanton Pacific Ranch is an estate operated by Cal Poly where students go to learn about forestry, wildlife, agriculture and land management. The region attracts many tourists, who stop at Swanton to buy goods and walk around the farm. CSAI is creating a chatbot to answer visitors’ questions.
@@ -16,14 +19,20 @@ This integrated chatbot ecosystem will provide visitors with a deeper understand
 
 ## Repositories
 
-### [Chatbot Logic:](https://github.com/calpoly-csai/swanton}
-
-The knowledge graph and deployment logic for the chatbot on the Raspberry Pi
-
-### [Android App:](https://github.com/calpoly-csai/swanton-android-app)
-
-The android interface for interacting with the chatbot.
-
-### [Web interface:](https://github.com/calpoly-csai/swanton-chat-bot)
-
-The text-based web interface for interacting with the chatbot.
+<InlineFlex>
+  <Project
+    title="Chatbot Logic"
+    description="The knowledge graph and deployment logic for the chatbot on the Raspberry Pi."
+    githubLink="https://github.com/calpoly-csai/swanton"
+  />
+  <Project
+    title="Android App"
+    description="The android interface for interacting with the chatbot."
+    githubLink="https://github.com/calpoly-csai/swanton-android-app"
+  />
+  <Project
+    title="Android App"
+    description="The text-based web interface for interacting with the chatbot."
+    githubLink="https://github.com/calpoly-csai/swanton-chat-bot"
+  />
+</InlineFlex>
