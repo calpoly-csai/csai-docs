@@ -1,0 +1,40 @@
+---
+name: Argo
+route: /projects/argo
+menu: Projects
+---
+
+import Project from "@/components/Project";
+import InlineFlex from "@/components/InlineFlex";
+
+# Argo
+
+## Overview
+
+An interactive virtual tour of Cal Poly using Computer Vision and 3D web technology.
+
+COVID-19 has kept many Cal Poly students away from campus. As the vaccine begins to roll out, there will be a significant number of students arriving at campus for the first time. They will need a resource to help them learn about key locations around the university.
+
+Argo provides a panoramic tour of Cal Poly. Users can walk through campus on designated paths and interact with helpful augmented reality modals that provide contextual information. Students can explore Dexter Lawn, find a new classroom, or locate their teacher’s office. The interactive environment will allow students to connect with the campus on a deeper level, understanding the history of certain buildings and significance of unique locations. By leveraging the Nimbus API, Argo will be able to display timely information about classes, office hours and other academic data.
+
+## Tour Representation
+
+The experience is divided up into panoramas and paths. Panoramas are 360º images where users stand still and survey their surroundings. These images are mapped onto a 3D object (sphere or cube) that surrounds the user, creating the illusion of 3D. Paths are videos that simulate the user walking between two panorama locations. From this structure, we can generate a graph representing the tour, where vertices map to panoramas and edges map to paths.
+
+## Resources
+
+Argo is in active development. The resources below are a great way to begin exploration.
+
+<InlineFlex>
+  <Project
+    title="Project Specification"
+    description="The active development project guidelines in a Google Doc"
+    generalLink="https://docs.google.com/document/d/1KFxSek3xubSyxoo7UeFDOJGK2J3Jbt1TP-mtxb-HVr4/"
+  />
+  <Project
+    title="Argo App Prototype"
+    description="A simple tour example. Requires a powerful machine. Works best in Safari"
+    githubLink="https://github.com/calpoly-csai/virtual-tour-concept"
+    liveLink="https://sleepy-mclean-e6f76f.netlify.app/"
+  />
+</InlineFlex>

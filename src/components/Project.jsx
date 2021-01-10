@@ -1,10 +1,8 @@
 /** @jsx jsx */
-import React from "react";
-import { css } from "@emotion/core";
 import { jsx } from "theme-ui";
 
 import t from "prop-types";
-import { GitHub } from "react-feather";
+import { GitHub, Link as LinkIcon } from "react-feather";
 
 Project.propTypes = {
   title: t.string.isRequired,
@@ -12,11 +10,13 @@ Project.propTypes = {
   image: t.string,
   githubLink: t.string,
   liveLink: t.string,
+  generalLink: t.string,
 };
 
 const Link = (props) => (
   <a
     href={props.href}
+    target="__blank"
     sx={{ textDecoration: "none", color: "link", height: "24px" }}
   >
     {props.children}
@@ -62,6 +62,13 @@ export default function Project(props) {
           <Button>See it Live</Button>
         </Link>
       )}
+      {props.generalLink && (
+        <Link href={props.generalLink}>
+          <Button>
+            <LinkIcon color="white" size={20} />
+          </Button>
+        </Link>
+      )}
     </div>
   );
 
@@ -84,6 +91,7 @@ export default function Project(props) {
         <img
           style={{ objectFit: "contain", borderRadius: "7px" }}
           src={props.image}
+          alt="Project"
         />
       )}
       <div
