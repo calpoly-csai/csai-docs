@@ -16,6 +16,7 @@ Project.propTypes = {
 const Link = (props) => (
   <a
     href={props.href}
+    target="__blank"
     sx={{ textDecoration: "none", color: "link", height: "24px" }}
   >
     {props.children}
